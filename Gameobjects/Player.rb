@@ -4,9 +4,9 @@ class Player < Entity
 		
 		super(window, @img.width.to_meters, @img.height.to_meters, 54)
 		
-		#~ @body.p.y = 30
+		@body.p = CP::Vec2.new(1,1)
 		
-		@body.v_limit = 20
+		#~ @body.v_limit = 20
 		
 		# TODO: Update player hitbox
 	end
