@@ -11,7 +11,7 @@ module Physics
 			
 			@entities = []
 			
-			self.gravity = CP::Vec2.new(0,100)
+			#~ self.gravity = CP::Vec2.new(0,-100)
 		end
 		
 		def step

@@ -1,4 +1,3 @@
-
 module Physics
 	module Shape
 		class Circle < CP::Shape::Circle

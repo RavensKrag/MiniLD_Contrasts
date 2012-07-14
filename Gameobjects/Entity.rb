@@ -1,9 +1,9 @@
 class Entity < GameObject
 	include Physics::Movement
 	
-	def initialize(window)
-		shape = Physics::Shape::Rect.new	CP::Body.new(20, CP::INFINITY), 
-											50, 100
+	def initialize(window, width, height, mass)
+		shape = Physics::Shape::Rect.new	CP::Body.new(mass, CP::INFINITY), 
+											width, height
 		
 		super(window, shape)
 	end
@@ -18,13 +18,23 @@ class Entity < GameObject
 		
 		# Stored coordinate is the bottom left, but the draw coordinate is the top right
 		
-		x = @body.p.x
-		y = @body.p.y-@shape.height
+		x = @body.p.x.to_px
+		y = @window.height - @body.p.y.to_px
 		
-		@window.draw_quad	x, y, color,
-							x + @shape.width, y, color,
-							x + @shape.width, y + @shape.height, color,
-							x, y + @shape.height, color
+		puts "x,y : #{x}, #{y}"
+		
+		#~ @window.draw_quad	x, y, color,
+							#~ x + @shape.width.to_px, y, color,
+							#~ x + @shape.width.to_px, y - @shape.height.to_px, color,
+							#~ x, y - @shape.height.to_px, color, -200
+		
+		#~ x = 0
+		#~ y = @window.height
+		#~ # Draws white box at the origin
+		#~ @window.draw_quad	x,		y, Gosu::Color::WHITE,
+							#~ x+100,	y, Gosu::Color::WHITE,
+							#~ x+100,	y-100, Gosu::Color::WHITE,
+							#~ x,		y-100, Gosu::Color::WHITE
 		
 	end
 end
