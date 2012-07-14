@@ -23,6 +23,7 @@ class GameWindow < Gosu::Window
 		self.caption = "Mini Ludum Dare 36"
 		
 		@show_fps = false
+		@show_debug_output = false
 		
 		@font = Gosu::Font.new self, "Trebuchet MS", 25
 		
@@ -86,9 +87,11 @@ class GameWindow < Gosu::Window
 			@font.draw "FPS: #{Gosu::fps}", 10,10,10, 1,1, Gosu::Color::FUCHSIA
 		end
 		
-		self.flush
-		
-		@debug.draw
+		if @show_debug_output
+			self.flush
+			
+			@debug.draw
+		end
 	end
 	
 	def button_down(id)
@@ -109,6 +112,9 @@ class GameWindow < Gosu::Window
 				@zoom += 0.01
 			when Gosu::MsWheelDown
 				@zoom -= 0.01
+			
+			when Gosu::KbF1
+				@show_debug_output = !@show_debug_output
 		end
 	end
 	
