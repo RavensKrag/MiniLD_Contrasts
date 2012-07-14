@@ -22,7 +22,7 @@ class GameWindow < Gosu::Window
 		
 		@font = Gosu::Font.new self, "Trebuchet MS", 25
 		
-		#~ @jukebox = Jukebox.new self
+		@jukebox = Jukebox.new self
 		
 		@space = Physics::Space.new 1.0/@target_fps
 		# Determine keyboard layout on Linux

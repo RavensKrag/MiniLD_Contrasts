@@ -4,9 +4,10 @@ class Jukebox
 		@window = window
 		
 		@music = [
-			Gosu::Sample.new(@window, "./Music/Background/Contrast_background_01.ogg")
+			Gosu::Sample.new(@window, "./Music/Background/Contrast_background_01.ogg"),
+			Gosu::Sample.new(@window, "./Music/Background/Contrast_background_02.ogg")
 		]
 		
-		@music[0].play 1, 1, true
+		@music[1].play 1, 1, true
 	end
 end
