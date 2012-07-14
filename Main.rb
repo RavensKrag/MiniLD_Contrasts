@@ -7,7 +7,7 @@ class GameWindow < Gosu::Window
 		@target_fps = 60
 		
 		super(1280, 720, false, (1.0/@target_fps)*1000)
-		self.caption = "Eternity 0.11.4"
+		self.caption = "Mini Ludum Dare 36"
 		
 		@show_fps = false
 		
