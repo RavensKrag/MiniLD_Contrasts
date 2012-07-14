@@ -92,7 +92,7 @@ class GameWindow < Gosu::Window
 			when Gosu::KbEscape
 				close
 			when Gosu::KbF
-				@show_fps = true
+				@show_fps = !@show_fps
 			
 			when Gosu::KbLeft
 				@player.move_left
