@@ -5,11 +5,11 @@ module Physics
 		end
 		
 		def move_right
-			@body.apply_force CP::Vec2.new(200, 0), CP::ZERO_VEC_2
+			@body.apply_force CP::Vec2.new(50000, 0), CP::ZERO_VEC_2
 		end
 		
 		def move_left
-			@body.apply_force CP::Vec2.new(-200, 0), CP::ZERO_VEC_2
+			@body.apply_force CP::Vec2.new(-50000, 0), CP::ZERO_VEC_2
 		end
 		
 		def jump

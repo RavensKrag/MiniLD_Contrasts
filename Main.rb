@@ -30,6 +30,9 @@ class GameWindow < Gosu::Window
 		
 		# Create gameobjects
 		@player = Player.new self
+		@platforms = [
+			Platform.new(self, 500, 20)
+		]
 		
 		# Add gameobjects to space
 		@player.add_to @space
@@ -58,9 +61,13 @@ class GameWindow < Gosu::Window
 		# Draw gamestate
 		self.translate self.width/2, self.height-200 do
 			self.scale @zoom, @zoom do
-				self.translate -@player.body.p.x, -@player.body.p.y do
+				#~ self.translate -@player.body.p.x, -@player.body.p.y do
 					@player.draw
-				end
+					
+					@platforms.each do |p|
+						p.draw
+					end
+				#~ end
 			end
 		end
 	end
