@@ -28,6 +28,8 @@ class GameWindow < Gosu::Window
 		
 		# Add gameobjects to space
 		@player.add_to @space
+		
+		@zoom = 1
 	end
 	
 	def update
@@ -43,7 +45,13 @@ class GameWindow < Gosu::Window
 		end
 		
 		# Draw gamestate
-		@player.draw
+		self.translate self.width/2, self.height-200 do
+			self.scale @zoom, @zoom do
+				self.translate -@player.body.p.x, -@player.body.p.y do
+					@player.draw
+				end
+			end
+		end
 	end
 	
 	def button_down(id)
@@ -52,11 +60,20 @@ class GameWindow < Gosu::Window
 				close
 			when Gosu::KbF
 				@show_fps = true
+			
+			when Gosu::MsWheelUp
+				@zoom += 0.1
+			when Gosu::MsWheelDown
+				@zoom -= 0.1
 		end
 	end
 	
 	def button_up(id)
 		
+	end
+	
+	def needs_cursor?
+		true
 	end
 end
 

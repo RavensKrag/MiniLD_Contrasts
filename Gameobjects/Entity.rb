@@ -19,7 +19,7 @@ class Entity < GameObject
 		# Stored coordinate is the bottom left, but the draw coordinate is the top right
 		
 		x = 0
-		y = @window.height - @shape.height
+		y = -@shape.height
 		
 		@window.draw_quad	x, y, color,
 							x + @shape.width, y, color,
