@@ -4,7 +4,7 @@ class Player < Entity
 		
 		super(window, @img.width.to_meters, @img.height.to_meters, 54)
 		
-		@body.p.y = 30
+		#~ @body.p.y = 30
 	end
 	
 	def update

@@ -41,12 +41,14 @@ class GameWindow < Gosu::Window
 		end
 		
 		target_sprite_height = 100.0
+		@default_zoom = target_sprite_height/Physics::CHARACTER_HEIGHT_PX
 		@zoom = target_sprite_height/Physics::CHARACTER_HEIGHT_PX
 	end
 	
 	def update
 		# Constrain zoom to positive
-		#~ @zoom = 1 if @zoom < 1
+		min_zoom = 0.01
+		@zoom = min_zoom if @zoom < min_zoom
 		
 		
 		@space.step
@@ -66,7 +68,7 @@ class GameWindow < Gosu::Window
 		# Draw gamestate
 		self.translate self.width/2, -200 do
 			self.scale @zoom, @zoom, 0,self.height do
-				self.translate -@player.body.p.x, -@player.body.p.y do
+				self.translate -@player.body.p.x.to_px, @player.body.p.y.to_px do
 					@player.draw
 					
 					@platforms.each do |p|
