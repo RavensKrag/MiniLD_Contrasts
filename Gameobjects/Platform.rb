@@ -16,11 +16,11 @@ class Platform < StaticObject
 		# Stored coordinate is the bottom left, but the draw coordinate is the top right
 		
 		x = 0
-		y = -@shape.height
+		y = @window.height - @body.p.y.to_px - @shape.height
 		
 		@window.draw_quad	x, y, color,
-							x + @shape.width, y, color,
-							x + @shape.width, y + @shape.height, color,
-							x, y + @shape.height, color
+							x + @shape.width.to_px, y, color,
+							x + @shape.width.to_px, y - @shape.height.to_px, color,
+							x, y - @shape.height.to_px, color
 	end
 end

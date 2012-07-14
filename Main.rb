@@ -31,13 +31,13 @@ class GameWindow < Gosu::Window
 		# Create gameobjects
 		@player = Player.new self
 		@platforms = [
-			Platform.new(self, 500, 20)
+			Platform.new(self, 500, 1)
 		]
 		
 		# Add gameobjects to space
 		@player.add_to @space
 		@platforms.each do |p|
-			#~ p.add_to @space
+			p.add_to @space
 		end
 		
 		target_sprite_height = 100.0
@@ -64,17 +64,17 @@ class GameWindow < Gosu::Window
 		end
 		
 		# Draw gamestate
-		#~ self.translate self.width/2, self.height do
-			#~ self.scale @zoom, @zoom do
-				#~ self.translate -@player.body.p.x, -@player.body.p.y do
+		self.translate self.width/2, -200 do
+			self.scale @zoom, @zoom, 0,self.height do
+				self.translate -@player.body.p.x, -@player.body.p.y do
 					@player.draw
 					
 					@platforms.each do |p|
 						p.draw
 					end
-				#~ end
-			#~ end
-		#~ end
+				end
+			end
+		end
 		
 		x = 0
 		y = self.height
