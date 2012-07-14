@@ -3,7 +3,7 @@ class Entity < GameObject
 	
 	def initialize(window, width, height, mass)
 		shape = Physics::Shape::Rect.new	CP::Body.new(mass, CP::INFINITY), 
-											width, height
+											width, height, CP::Vec2.new(-width/2.0,0)
 		
 		super(window, shape)
 		
@@ -15,7 +15,7 @@ class Entity < GameObject
 	end
 	
 	def draw
-		x = @body.p.x.to_px
+		x = @body.p.x.to_px - @shape.width.to_px/2
 		y = @window.height - @body.p.y.to_px - @shape.height.to_px
 		
 		
