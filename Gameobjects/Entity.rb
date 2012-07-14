@@ -15,9 +15,16 @@ class Entity < GameObject
 	def draw
 		color = Gosu::Color::BLUE
 		z = 0
-		@window.draw_quad	@body.p.x, @body.p.y, color,
-							@body.p.x + @shape.width, @body.p.y, color,
-							@body.p.x + @shape.width, @body.p.y + @shape.height, color,
-							@body.p.x, @body.p.y + @shape.height, color, z
+		
+		# Stored coordinate is the bottom left, but the draw coordinate is the top right
+		
+		x = 0
+		y = @window.height - @shape.height
+		
+		@window.draw_quad	x, y, color,
+							x + @shape.width, y, color,
+							x + @shape.width, y + @shape.height, color,
+							x, y + @shape.height, color
+		
 	end
 end
