@@ -13,8 +13,6 @@ class Player < Entity
 	
 	def update
 		super()
-		
-		puts @body.v.length
 	end
 	
 	def draw
