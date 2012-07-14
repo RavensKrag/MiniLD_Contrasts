@@ -33,6 +33,10 @@ class GameWindow < Gosu::Window
 	end
 	
 	def update
+		# Constrain zoom to positive
+		@zoom = 1 if @zoom < 1
+		
+		
 		@space.step
 		
 		@player.update
@@ -65,6 +69,8 @@ class GameWindow < Gosu::Window
 				@zoom += 0.1
 			when Gosu::MsWheelDown
 				@zoom -= 0.1
+			when Gosu::MsLeft
+				puts @zoom
 		end
 	end
 	
