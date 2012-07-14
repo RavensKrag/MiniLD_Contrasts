@@ -36,6 +36,9 @@ class GameWindow < Gosu::Window
 		
 		# Add gameobjects to space
 		@player.add_to @space
+		@platforms.each do |p|
+			p.add_to @space
+		end
 		
 		@zoom = 1
 	end

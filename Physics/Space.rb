@@ -10,6 +10,8 @@ module Physics
 			#~ self.damping = 0.2
 			
 			@entities = []
+			
+			self.gravity = CP::Vec2.new(0,100)
 		end
 		
 		def step
