@@ -8,6 +8,7 @@ require 'require_all'
 
 require_all './Physics'
 require_all './Gameobjects'
+require_all './Utilities'
 require_all './Debug'
 
 require './Jukebox'
@@ -23,7 +24,7 @@ class GameWindow < Gosu::Window
 		self.caption = "Mini Ludum Dare 36"
 		
 		@show_fps = false
-		@show_debug_output = false
+		@show_debug_output = true
 		
 		@font = Gosu::Font.new self, "Trebuchet MS", 25
 		
@@ -47,12 +48,16 @@ class GameWindow < Gosu::Window
 			p.add_to @space
 		end
 		
+		@inpman = GameInput.new @player
+		
 		target_sprite_height = 100.0
 		@default_zoom = target_sprite_height/Physics::CHARACTER_HEIGHT_PX
 		@zoom = target_sprite_height/Physics::CHARACTER_HEIGHT_PX
 	end
 	
 	def update
+		@inpman.update
+		
 		# Constrain zoom to positive
 		min_zoom = 0.01
 		@zoom = min_zoom if @zoom < min_zoom
@@ -95,18 +100,13 @@ class GameWindow < Gosu::Window
 	end
 	
 	def button_down(id)
+		@inpman.button_down(id)
+		
 		case id
 			when Gosu::KbEscape
 				close
 			when Gosu::KbF
 				@show_fps = !@show_fps
-			
-			when Gosu::KbLeft
-				@player.move_left
-			when Gosu::KbRight
-				@player.move_right
-			when Gosu::KbSpace
-				@player.jump
 			
 			when Gosu::MsWheelUp
 				@zoom += 0.01
@@ -119,7 +119,7 @@ class GameWindow < Gosu::Window
 	end
 	
 	def button_up(id)
-		
+		@inpman.button_up(id)
 	end
 	
 	def needs_cursor?
