@@ -8,10 +8,16 @@ module Physics
 			
 			self.iterations = 10
 			#~ self.damping = 0.2
+			
+			@entities = []
 		end
 		
 		def step
 			super(@dt)
+			
+			@entities.each do |entity|
+				entity.body.reset_forces
+			end
 		end
 		
 		def add_gameobject(obj)
@@ -19,6 +25,7 @@ module Physics
 				self.add_static_shape obj.shape
 				#~ self.add_static_body
 			else
+				@entities << obj
 				self.add_shape obj.shape
 				self.add_body obj.body
 			end

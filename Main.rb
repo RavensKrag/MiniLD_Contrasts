@@ -40,6 +40,8 @@ class GameWindow < Gosu::Window
 		@space.step
 		
 		@player.update
+		
+		puts @player.body.p.x
 	end
 	
 	def draw
@@ -64,6 +66,11 @@ class GameWindow < Gosu::Window
 				close
 			when Gosu::KbF
 				@show_fps = true
+			
+			when Gosu::KbLeft
+				@player.move_left
+			when Gosu::KbRight
+				@player.move_right
 			
 			when Gosu::MsWheelUp
 				@zoom += 0.1
