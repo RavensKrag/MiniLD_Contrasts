@@ -8,10 +8,14 @@ require 'require_all'
 
 require_all './Physics'
 require_all './Gameobjects'
+require_all './Debug'
 
 require './Jukebox'
 
 class GameWindow < Gosu::Window
+	attr_reader :player, :jukebox, :font
+	attr_reader :zoom
+	
 	def initialize
 		@target_fps = 60
 		
@@ -21,6 +25,8 @@ class GameWindow < Gosu::Window
 		@show_fps = false
 		
 		@font = Gosu::Font.new self, "Trebuchet MS", 25
+		
+		@debug = DebugOutput.new self
 		
 		@jukebox = Jukebox.new self
 		
@@ -55,16 +61,11 @@ class GameWindow < Gosu::Window
 		
 		@player.update
 		
-		puts @player.body.p.y
-		#~ puts @player.shape.width
+		
+		@debug.update
 	end
 	
 	def draw
-		# Draw UI
-		if @show_fps
-			@font.draw "FPS: #{Gosu::fps}", 10,10,10, 1,1, Gosu::Color::FUCHSIA
-		end
-		
 		# Draw gamestate
 		self.translate self.width/2, -200 do
 			self.scale @zoom, @zoom, 0,self.height do
@@ -78,13 +79,16 @@ class GameWindow < Gosu::Window
 			end
 		end
 		
-		x = 0
-		y = self.height
-		# Draws white box at the origin
-		self.draw_quad	x,		y, Gosu::Color::WHITE,
-						x+100,	y, Gosu::Color::WHITE,
-						x+100,	y-100, Gosu::Color::WHITE,
-						x+0,	y-100, Gosu::Color::WHITE
+		self.flush
+		
+		# Draw UI
+		if @show_fps
+			@font.draw "FPS: #{Gosu::fps}", 10,10,10, 1,1, Gosu::Color::FUCHSIA
+		end
+		
+		self.flush
+		
+		@debug.draw
 	end
 	
 	def button_down(id)
@@ -105,8 +109,6 @@ class GameWindow < Gosu::Window
 				@zoom += 0.01
 			when Gosu::MsWheelDown
 				@zoom -= 0.01
-			when Gosu::MsLeft
-				puts @zoom
 		end
 	end
 	
