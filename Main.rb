@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+Dir.chdir File.dirname(__FILE__)
 
 require 'rubygems'
 require 'gosu'
@@ -7,6 +8,8 @@ require 'require_all'
 
 require_all './Physics'
 require_all './Gameobjects'
+
+require './Jukebox'
 
 class GameWindow < Gosu::Window
 	def initialize
@@ -18,6 +21,8 @@ class GameWindow < Gosu::Window
 		@show_fps = false
 		
 		@font = Gosu::Font.new self, "Trebuchet MS", 25
+		
+		@jukebox = Jukebox.new self
 		
 		@space = Physics::Space.new 1.0/@target_fps
 		# Determine keyboard layout on Linux
