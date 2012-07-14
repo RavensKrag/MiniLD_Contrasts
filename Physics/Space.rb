@@ -18,7 +18,7 @@ module Physics
 			super(@dt)
 			
 			@entities.each do |entity|
-				entity.body.reset_forces
+				#~ entity.body.reset_forces
 			end
 		end
 		
