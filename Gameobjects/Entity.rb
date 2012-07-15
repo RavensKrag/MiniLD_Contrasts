@@ -1,11 +1,14 @@
 class Entity < GameObject
 	include Physics::Movement
 	
-	def initialize(window, width, height, mass)
-		shape = Physics::Shape::Rect.new	CP::Body.new(mass, CP::INFINITY), 
+	def initialize(window, width, height, mass, move_constant)
+		shape = Physics::Shape::Rect.new	self, CP::Body.new(mass, CP::INFINITY), 
 											width, height, CP::Vec2.new(-width/2.0,0)
 		
 		super(window, shape)
+		@shape.collision_type = :entity
+		
+		init_movement move_constant
 		
 		@@collision_box_color = Gosu::Color.argb(100, 255,0,0)
 	end

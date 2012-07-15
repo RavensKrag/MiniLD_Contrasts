@@ -11,14 +11,16 @@ module Physics
 			
 			@entities = []
 			
-			self.gravity = CP::Vec2.new(0,-30)
+			self.gravity = CP::Vec2.new(0,-40)
+			
+			self.add_collision_handler :entity, :static, Collisions::EntityStatic.new
 		end
 		
 		def step
 			super(@dt)
 			
 			@entities.each do |entity|
-				#~ entity.body.reset_forces
+				entity.body.reset_forces
 			end
 		end
 		

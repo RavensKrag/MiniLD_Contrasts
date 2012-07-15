@@ -1,8 +1,10 @@
 class Platform < StaticObject
 	def initialize(window, width, height)
-		shape = Physics::Shape::Rect.new CP::Body.new_static, width, height
+		shape = Physics::Shape::Rect.new self, CP::Body.new_static, width, height
 		
 		super(window, shape)
+		
+		@shape.u = 0.8
 	end
 	
 	def update

@@ -2,7 +2,9 @@ class Player < Entity
 	def initialize(window)
 		@img = Gosu::Image.new window, "./Sprites/Character-Idle-Prototype.png", false
 		
-		super(window, (@img.width/2).to_meters, @img.height.to_meters, 54)
+		mass = 54
+		move_constant = 500
+		super(window, (@img.width/2).to_meters, @img.height.to_meters, mass, move_constant)
 		
 		@body.p = CP::Vec2.new(1,1)
 		

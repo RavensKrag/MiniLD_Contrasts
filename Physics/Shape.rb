@@ -1,21 +1,31 @@
 module Physics
 	module Shape
 		class Circle < CP::Shape::Circle
-			def initialize(*args)
+			def initialize(gameobject, *args)
 				super(*args)
+				self.object = gameobject
+			end
+			
+			def gameobject
+				return self.object
 			end
 		end
 		
 		class Poly < CP::Shape::Poly
-			def initialize(*args)
+			def initialize(gameobject, *args)
 				super(*args)
+				self.object = gameobject
+			end
+			
+			def gameobject
+				return self.object
 			end
 		end
 		
 		class Rect < Poly
 			attr_reader :width, :height
 			
-			def initialize(body, width, height, offset=CP::ZERO_VEC_2)
+			def initialize(gameobject, body, width, height, offset=CP::ZERO_VEC_2)
 				@width = width
 				@height = height
 				
@@ -25,7 +35,7 @@ module Physics
 					CP::Vec2.new(width, height),
 					CP::Vec2.new(width,0)
 				]
-				super(body, verts, offset)
+				super(gameobject, body, verts, offset)
 			end
 		end
 	end

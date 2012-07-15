@@ -30,7 +30,7 @@ class GameWindow < Gosu::Window
 		
 		@debug = DebugOutput.new self
 		
-		@jukebox = Jukebox.new self
+		#~ @jukebox = Jukebox.new self
 		
 		@space = Physics::Space.new 1.0/@target_fps
 		# Determine keyboard layout on Linux
@@ -39,7 +39,7 @@ class GameWindow < Gosu::Window
 		# Create gameobjects
 		@player = Player.new self
 		@platforms = [
-			Platform.new(self, 500, 1)
+			Platform.new(self, 200, 1)
 		]
 		
 		# Add gameobjects to space
@@ -73,9 +73,9 @@ class GameWindow < Gosu::Window
 	
 	def draw
 		# Draw gamestate
-		self.translate self.width/2, -200 do
+		self.translate self.width/2, -100 do
 			self.scale @zoom, @zoom, 0,self.height do
-				self.translate -@player.body.p.x.to_px, @player.body.p.y.to_px do
+				self.translate -@player.body.p.x.to_px, 0 do
 					@player.draw
 					
 					@platforms.each do |p|
