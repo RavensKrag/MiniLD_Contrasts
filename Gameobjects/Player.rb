@@ -32,7 +32,7 @@ class Player < Entity
 					1
 				end
 		
-		@animations[0].draw_rot	x,	y, 100, 0, 0.5,0,	dir,1
+		@animations[20].draw_rot	x,	y, 100, 0, 0.5,0,	dir,1
 		#~ @img.draw_rot	x,	y, 100, 0, 0.5,0,	dir,1
 		#~ @img.draw_rot	x-@img.width,	y, 100, 0,0.5,0.5,	1,1
 		
