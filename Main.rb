@@ -32,7 +32,7 @@ class GameWindow < Gosu::Window
 		
 		@debug = DebugOutput.new self
 		
-		#~ @jukebox = Jukebox.new self
+		@jukebox = Jukebox.new self
 		
 		@space = Physics::Space.new 1.0/@target_fps
 		# Determine keyboard layout on Linux
@@ -50,7 +50,7 @@ class GameWindow < Gosu::Window
 			p.add_to @space
 		end
 		
-		@inpman = GameInput.new @player
+		@inpman = GameInput.new @player, @jukebox
 		
 		target_sprite_height = 100.0
 		@default_zoom = target_sprite_height/Physics::CHARACTER_HEIGHT_PX

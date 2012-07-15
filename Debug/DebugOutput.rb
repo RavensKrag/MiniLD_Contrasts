@@ -10,6 +10,10 @@ class DebugOutput
 	def draw
 		origin_box
 		player_info
+		camera_info
+		
+		music_info
+		sound_info
 	end
 	
 	private
@@ -52,9 +56,25 @@ class DebugOutput
 			"vx, vy : #{format % @window.player.body.v.x}, #{format % @window.player.body.v.y}",
 			"fx, fy : #{format % @window.player.body.f.x}, #{format % @window.player.body.f.y}"
 		], 0,100
+	end
+	
+	def camera_info
+		format = "%.3f"
 		
 		debug_print "Camera", [
 			"zoom: #{format % @window.zoom}"
 		], 0,0
+	end
+	
+	def music_info
+		debug_print	"Music", [
+			"index: #{@window.jukebox.music_index}"
+		], 200,0
+	end
+	
+	def sound_info
+		debug_print	"Sound", [
+			"index: #{@window.jukebox.sound_index}"
+		], 350,0
 	end
 end

@@ -1,7 +1,8 @@
 class GameInput < InputHandler
-	def initialize(player)
+	def initialize(player, jukebox)
 		super()
 		@player = player
+		@jukebox = jukebox
 		
 		init_gameplay_inputs
 		bind_gameplay_inputs
