@@ -63,19 +63,19 @@ class Jukebox
 	end
 	
 	def next_music
-		@music_index += 1
-		@music_index = 0 if @music_index >= @music.length
-		
 		@current_music.stop if @current_music
 		@volumes[:music][@music_index] = @current_music_volume
+		
+		@music_index += 1
+		@music_index = 0 if @music_index >= @music.length
 	end
 	
 	def next_sound
-		@sound_index += 1
-		@sound_index = 0 if @sound_index >= @sounds.length
-		
 		@current_sound.stop if @current_sound
 		@volumes[:sounds][@sound_index] = @current_sound_volume
+		
+		@sound_index += 1
+		@sound_index = 0 if @sound_index >= @sounds.length
 	end
 	
 	def play_music
@@ -102,21 +102,53 @@ class Jukebox
 	
 	def music_volume_up
 		@current_music_volume += VOLUME_INCREMENTATION
+		
+		# Bound volume
+		if @current_music_volume > 1.0
+			@current_music_volume = 1.0
+		elsif @current_music_volume < 0.0
+			@current_music_volume = 0.0
+		end
+		
 		@current_music.volume = @current_music_volume
 	end
 	
 	def music_volume_down
 		@current_music_volume -= VOLUME_INCREMENTATION
+		
+		# Bound volume
+		if @current_music_volume > 1.0
+			@current_music_volume = 1.0
+		elsif @current_music_volume < 0.0
+			@current_music_volume = 0.0
+		end
+		
 		@current_music.volume = @current_music_volume
 	end
 	
 	def sound_volume_up
 		@current_sound_volume += VOLUME_INCREMENTATION
+		
+		# Bound volume
+		if @current_music_volume > 1.0
+			@current_music_volume = 1.0
+		elsif @current_music_volume < 0.0
+			@current_music_volume = 0.0
+		end
+		
 		@current_sound.volume = @current_sound_volume
 	end
 	
 	def sound_volume_down
 		@current_sound_volume -= VOLUME_INCREMENTATION
+		
+		# Bound volume
+		if @current_music_volume > 1.0
+			@current_music_volume = 1.0
+		elsif @current_music_volume < 0.0
+			@current_music_volume = 0.0
+		end
+		
 		@current_sound.volume = @current_sound_volume
 	end
 	
@@ -128,9 +160,7 @@ class Jukebox
 	
 	def load
 		if File.exist?(VOLUME_LEVELS_FILE)
-			File.open(VOLUME_LEVELS_FILE, "r").each do |object|
-				@volumes << YAML::load(object)
-			end
+			@volumes = YAML::load(File.open(VOLUME_LEVELS_FILE, "r"))
 		end
 	end
 end
