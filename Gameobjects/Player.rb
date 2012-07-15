@@ -8,6 +8,8 @@ class Player < Entity
 		
 		@body.p = CP::Vec2.new(1,1)
 		
+		@shape.u = 0.2
+		
 		#~ @body.v_limit = 20
 		
 		# TODO: Update player hitbox

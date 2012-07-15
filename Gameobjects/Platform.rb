@@ -4,7 +4,7 @@ class Platform < StaticObject
 		
 		super(window, shape)
 		
-		@shape.u = 0.8
+		@shape.u = 0.2
 	end
 	
 	def update
