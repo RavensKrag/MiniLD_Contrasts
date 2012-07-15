@@ -6,11 +6,15 @@ require "bundler/setup"
 
 require 'gosu'
 require 'chipmunk'
+
+require 'imageruby'
+
 require 'require_all'
 
 require_all './Physics'
 require_all './Gameobjects'
 require_all './Utilities'
+require_all './Gamestates'
 require_all './Debug'
 
 require './Jukebox'
@@ -49,6 +53,10 @@ class GameWindow < Gosu::Window
 		@platforms.each do |p|
 			p.add_to @space
 		end
+		
+		
+		# Create level
+		@level = LevelState.new self, "./Levels/Test1.bmp"
 		
 		@inpman = GameInput.new @player, @jukebox
 		

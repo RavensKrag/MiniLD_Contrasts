@@ -22,3 +22,5 @@ end
 gem "require_all"
 gem "gosu", "~>0.7.43"
 gem "chipmunk", "~>5.3.4.5"
+gem "imageruby"
+gem "imageruby-bmp"
