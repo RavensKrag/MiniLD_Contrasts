@@ -46,8 +46,7 @@ class Jukebox
 			Gosu::Sample.new(@window, "./Music/Effects/sword_swing_02.ogg"),
 			Gosu::Sample.new(@window, "./Music/Effects/sword_swing_03.ogg"),
 			Gosu::Sample.new(@window, "./Music/Effects/sword_swing_04.ogg"),
-			Gosu::Sample.new(@window, "./Music/Effects/sword_swing_05.ogg"),
-			Gosu::Sample.new(@window, "./Music/Effects/sword_swing_06.ogg")
+			Gosu::Sample.new(@window, "./Music/Effects/sword_swing_05.ogg")
 		]
 		
 		@volumes = {
