@@ -1,5 +1,46 @@
 class LevelState
 	def initialize(window, file)
+		@window = window
+		load_static_objects(file)
+		
+		@backdrop = Gosu::Image.new(@window, "./Sprites/Backdrop.png", false)
+	end
+	
+	def update
+		@player.update
+	end
+	
+	def draw
+		@backdrop.draw 0,0,0
+		
+		@window.translate @window.width/2, -300 do
+			@window.scale @window.zoom, @window.zoom, 0,@window.height do
+				@window.translate -@player.body.p.x.to_px, @player.body.p.y.to_px do
+					@static_objects.each do |obj|
+						obj.draw
+					end
+					
+					@player.draw
+				end
+			end
+		end
+	end
+	
+	def add_player(player)
+		@player = player
+		player.body.p.x = ((@spawn[0]+1)*256).to_meters
+		player.body.p.y = ((@spawn[1]+1)*256).to_meters
+	end
+	
+	def add_objects_to(space)
+		@static_objects.each do |obj|
+			obj.add_to space
+		end
+	end
+	
+	private
+	
+	def load_static_objects(file)
 		level = ImageRuby::Image.from_file(file)
 		#~ p image.methods
 		#~ 
@@ -49,7 +90,7 @@ class LevelState
 						Surface13, Surface14, Surface15, Surface16
 					]
 					
-					@static_objects << surfaces[check].new(window, x, level.height-y)
+					@static_objects << surfaces[check].new(@window, x, level.height-y)
 				else
 					if val == red
 						puts "red"
@@ -57,27 +98,6 @@ class LevelState
 					end
 				end
 			end
-		end
-	end
-	
-	def update
-		
-	end
-	
-	def draw
-		@static_objects.each do |obj|
-			obj.draw
-		end
-	end
-	
-	def add_player(player)
-		player.body.p.x = ((@spawn[0]+1)*256).to_meters
-		player.body.p.y = ((@spawn[1]+1)*256).to_meters
-	end
-	
-	def add_objects_to(space)
-		@static_objects.each do |obj|
-			obj.add_to space
 		end
 	end
 end

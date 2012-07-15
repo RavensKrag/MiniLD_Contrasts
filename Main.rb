@@ -77,7 +77,7 @@ class GameWindow < Gosu::Window
 		
 		@space.step
 		
-		@player.update
+		@level.update
 		
 		
 		@debug.update
@@ -85,20 +85,7 @@ class GameWindow < Gosu::Window
 	
 	def draw
 		# Draw gamestate
-		self.translate self.width/2, -300 do
-			self.scale @zoom, @zoom, 0,self.height do
-				self.translate -@player.body.p.x.to_px, @player.body.p.y.to_px do
-					@level.draw
-					
-					@player.draw
-					
-					@platforms.each do |p|
-						p.draw
-					end
-					
-				end
-			end
-		end
+		@level.draw
 		
 		self.flush
 		
