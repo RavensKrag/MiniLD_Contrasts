@@ -67,14 +67,20 @@ class DebugOutput
 	end
 	
 	def music_info
+		format = "%.3f"
+		
 		debug_print	"Music", [
-			"index: #{@window.jukebox.music_index}"
+			"index: #{format % @window.jukebox.music_index}",
+			"volume: #{format % @window.jukebox.current_music_volume}"
 		], 200,0
 	end
 	
 	def sound_info
+		format = "%.3f"
+		
 		debug_print	"Sound", [
-			"index: #{@window.jukebox.sound_index}"
+			"index: #{format % @window.jukebox.sound_index}",
+			"volume: #{format % @window.jukebox.current_sound_volume}"
 		], 350,0
 	end
 end
