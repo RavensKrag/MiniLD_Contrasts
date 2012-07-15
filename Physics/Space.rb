@@ -11,7 +11,7 @@ module Physics
 			
 			@entities = []
 			
-			self.gravity = CP::Vec2.new(0,-40)
+			self.gravity = CP::Vec2.new(0,-60)
 			
 			self.add_collision_handler :entity, :static, Collisions::EntityStatic.new
 		end

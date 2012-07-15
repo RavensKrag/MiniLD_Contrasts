@@ -6,6 +6,6 @@ class Numeric
 	
 	def to_meters
 		# Convert from pixels to meters
-		self/(Physics::SCALE.to_f) #Insure that integer division is not used
+		self/(Physics::SCALE) #Insure that integer division is not used
 	end
 end

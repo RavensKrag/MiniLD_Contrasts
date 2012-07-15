@@ -3,7 +3,7 @@ module Physics
 		def init_movement(move_constant)
 			@move_constant = move_constant
 			@jump_count = 0
-			@max_jump_count = 2
+			@max_jump_count = 200000000000
 		end
 		
 		def move_right
@@ -18,7 +18,7 @@ module Physics
 		def jump
 			if @jump_count < @max_jump_count
 				@jump_count += 1
-				@body.v.y = 14
+				@body.v.y = 20
 			end
 		end
 		

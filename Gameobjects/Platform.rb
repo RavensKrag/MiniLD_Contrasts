@@ -9,8 +9,8 @@ class Platform < StaticObject
 		super(window, shape)
 		
 		@shape.u = 0.2
-		@body.p.x = x
-		@body.p.y = y
+		@body.p.x = x*TILE_WIDTH.to_meters
+		@body.p.y = y*TILE_HEIGHT.to_meters
 		
 		@@spritesheet ||= Gosu::Image::load_tiles(window, "./Sprites/Rocks.png", -4, -4, true)
 	end
@@ -82,7 +82,6 @@ end
 class Surface4 < Platform
 	def initialize(window, x,y)
 		verts = [
-			CP::Vec2.new(0, 0),
 			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
 			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
 			CP::Vec2.new(TILE_WIDTH.to_meters, 0)
@@ -125,11 +124,9 @@ class Surface7 < Platform
 	def initialize(window, x,y)
 		verts = [
 			CP::Vec2.new(0, 0),
-			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
 			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
 			CP::Vec2.new(TILE_WIDTH.to_meters, 0)
 		]
-		
 		
 		super(window, 6, verts, x,y)
 	end
@@ -166,10 +163,11 @@ end
 class Surface10 < Platform
 	def initialize(window, x,y)
 		verts = [
+			
 			CP::Vec2.new(0, 0),
 			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
 			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, 0)
+			
 		]
 		
 		
@@ -210,7 +208,6 @@ class Surface13 < Platform
 		verts = [
 			CP::Vec2.new(0, 0),
 			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
 			CP::Vec2.new(TILE_WIDTH.to_meters, 0)
 		]
 		
