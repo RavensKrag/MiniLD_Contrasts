@@ -4,7 +4,8 @@ class LevelState
 		#~ p image.methods
 		#~ 
 		#~ p image.width
-		tiles = Gosu::Image::load_tiles(window, "./Sprites/Rocks.png", -4, -4, true)
+		
+		@static_objects = []
 		
 		black = ImageRuby::Color.from_rgb(0,0,0)
 		white = ImageRuby::Color.from_rgb(255,255,255)
@@ -41,11 +42,18 @@ class LevelState
 						check += 8
 					end
 					
+					surfaces = [
+						Surface1, Surface2, Surface3, Surface4, 
+						Surface5, Surface6, Surface7, Surface8,
+						Surface9, Surface10, Surface11, Surface12,
+						Surface13, Surface14, Surface15, Surface16
+					]
 					
-					
+					@static_objects << surfaces[check].new(window, x, level.height-y)
 				else
 					if val == red
 						puts "red"
+						@spawn = [x, level.height-y]
 					end
 				end
 			end
@@ -57,10 +65,19 @@ class LevelState
 	end
 	
 	def draw
-		
+		@static_objects.each do |obj|
+			obj.draw
+		end
 	end
 	
-	def add_player
-		
+	def add_player(player)
+		player.body.p.x = @spawn[0]*256.to_meters
+		player.body.p.y = @spawn[1]*256.to_meters
+	end
+	
+	def add_objects_to(space)
+		@static_objects.each do |obj|
+			obj.add_to space
+		end
 	end
 end

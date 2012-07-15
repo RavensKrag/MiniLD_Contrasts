@@ -45,7 +45,7 @@ class GameWindow < Gosu::Window
 		# Create gameobjects
 		@player = Player.new self
 		@platforms = [
-			Platform.new(self, 200, 1)
+			#~ Platform.new(self, 200, 1)
 		]
 		
 		# Add gameobjects to space
@@ -57,6 +57,8 @@ class GameWindow < Gosu::Window
 		
 		# Create level
 		@level = LevelState.new self, "./Levels/Test1.bmp"
+		@level.add_objects_to @space
+		@level.add_player @player
 		
 		@inpman = GameInput.new @player, @jukebox
 		
@@ -86,11 +88,14 @@ class GameWindow < Gosu::Window
 		self.translate self.width/2, -100 do
 			self.scale @zoom, @zoom, 0,self.height do
 				self.translate -@player.body.p.x.to_px, 0 do
+					@level.draw
+					
 					@player.draw
 					
 					@platforms.each do |p|
 						p.draw
 					end
+					
 				end
 			end
 		end
