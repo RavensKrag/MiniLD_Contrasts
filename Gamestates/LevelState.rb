@@ -61,27 +61,29 @@ class LevelState
 					# Examine pixels around black pixels
 					check = 0
 					
-					#~ puts "#{x}, #{y}"
+					puts "#{x}, #{y}"
 					
-					if y > 0 && level.get_pixel(x,y-1) 
+					if y > 0 && level.get_pixel(x,y-1) == black
 						# Top
 						check += 1
 					end
 					
-					if x < level.width-1 && level.get_pixel(x+1,y)
+					if x < level.width-1 && level.get_pixel(x+1,y) == black
 						# Right
 						check += 2
 					end
 					
-					if y < level.height-1 && level.get_pixel(x,y+1)
+					if y < level.height-1 && level.get_pixel(x,y+1) == black
 						# Bottom
 						check += 4
 					end
 					
-					if x > 0 && level.get_pixel(x-1,y)
+					if x > 0 && level.get_pixel(x-1,y) == black
 						# Left
 						check += 8
 					end
+					
+					puts check
 					
 					surfaces = [
 						Surface1, Surface2, Surface3, Surface4, 

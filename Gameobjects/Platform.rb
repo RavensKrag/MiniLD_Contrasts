@@ -3,6 +3,8 @@ class Platform < StaticObject
 	TILE_HEIGHT = 1024/4
 	
 	def initialize(window, index, verts, x,y)
+		@index = index
+		
 		shape = CP::Shape::Poly.new CP::Body.new_static(), verts, CP::ZERO_VEC_2
 		super(window, shape)
 		
@@ -18,7 +20,7 @@ class Platform < StaticObject
 	end
 	
 	def draw
-		color = Gosu::Color::RED
+		color = Gosu::Color.argb(100, 255,0,0)
 		z = 0
 		
 		# Stored coordinate is the bottom left, but the draw coordinate is the top right
@@ -26,10 +28,12 @@ class Platform < StaticObject
 		x = @body.p.x.to_px
 		y = @window.height - @body.p.y.to_px - TILE_HEIGHT
 		
-		@window.draw_quad	x, y, color,
-							x + TILE_WIDTH, y, color,
-							x + TILE_WIDTH, y + TILE_HEIGHT, color,
-							x, y + TILE_HEIGHT, color
+		@@spritesheet[@index].draw x,y,0
+		
+		#~ @window.draw_quad	x, y, color,
+							#~ x + TILE_WIDTH, y, color,
+							#~ x + TILE_WIDTH, y + TILE_HEIGHT, color,
+							#~ x, y + TILE_HEIGHT, color
 	end
 end
 

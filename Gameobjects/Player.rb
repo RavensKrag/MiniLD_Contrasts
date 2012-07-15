@@ -13,6 +13,9 @@ class Player < Entity
 		#~ @body.v_limit = 20
 		
 		# TODO: Update player hitbox
+		
+		@animations = Gosu::Image.load_tiles	window, "./Sprites/Animation Roughs/Sheet.png", 
+												-6, -6, false
 	end
 	
 	def update
@@ -29,7 +32,8 @@ class Player < Entity
 					1
 				end
 		
-		@img.draw_rot	x,	y, 100, 0, 0.5,0,	dir,1
+		@animations[0].draw_rot	x,	y, 100, 0, 0.5,0,	dir,1
+		#~ @img.draw_rot	x,	y, 100, 0, 0.5,0,	dir,1
 		#~ @img.draw_rot	x-@img.width,	y, 100, 0,0.5,0.5,	1,1
 		
 		super() # Draw debug shape for collision body
