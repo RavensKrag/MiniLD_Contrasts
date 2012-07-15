@@ -129,4 +129,7 @@ class GameWindow < Gosu::Window
 	end
 end
 
-GameWindow.new.show
+window = GameWindow.new
+window.show
+
+window.jukebox.save

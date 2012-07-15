@@ -1,12 +1,19 @@
 # Control sounds for the game
+require 'yaml'
+
 class Jukebox
 	attr_accessor :music_index, :sound_index
+	
+	VOLUME_INCREMENTATION = 0.01
 	
 	def initialize(window)
 		@window = window
 		
 		@music_index = 0
 		@sound_index = 0
+		
+		@current_music_volume = 1.0
+		@current_sound_volume = 1.0
 		
 		@music = [
 			Gosu::Sample.new(@window, "./Music/Background/Contrast_background_01.ogg"),
@@ -41,7 +48,7 @@ class Jukebox
 			Gosu::Sample.new(@window, "./Music/Effects/sword_swing_07.ogg"),
 			Gosu::Sample.new(@window, "./Music/Effects/sword_swing_08.ogg")
 		]
-			
+		
 		@volumes = {
 			:music => [],
 			:sounds => []
@@ -57,32 +64,68 @@ class Jukebox
 		@music_index = 0 if @music_index >= @music.length
 		
 		@current_music.stop if @current_music
+		@volumes[:music][@music_index] = @current_music_volume
 	end
 	
 	def next_sound
 		@sound_index += 1
 		@sound_index = 0 if @sound_index >= @sounds.length
+		
+		@current_sound.stop if @current_sound
+		@volumes[:sounds][@sound_index] = @current_sound_volume
 	end
 	
 	def play_music
-		volume = @volumes[:music][@music_index]
-		unless volume
-			default_volume = 1.0
+		@current_music_volume = @volumes[:music][@music_index]
+		unless @current_music_volume
+			default_volume = 0.5
 			@volumes[:music][@music_index] = default_volume
-			volume = default_volume
+			@current_music_volume = default_volume
 		end
 		
-		@current_music = @music[@music_index].play volume
+		@current_music = @music[@music_index].play @current_music_volume
 	end
 	
 	def play_sound
-		volume = @volumes[:sounds][@sound_index]
-		unless volume
-			default_volume = 1.0
+		@current_sound_volume = @volumes[:sounds][@sound_index]
+		unless @current_sound_volume
+			default_volume = 0.5
 			@volumes[:sounds][@sound_index] = default_volume
-			volume = default_volume
+			@current_sound_volume = default_volume
 		end
 		
-		@current_sound = @sounds[@sound_index].play volume
+		@current_sound = @sounds[@sound_index].play @current_sound_volume
+	end
+	
+	def music_volume_up
+		@current_music_volume += VOLUME_INCREMENTATION
+		@current_music.volume = @current_music_volume
+	end
+	
+	def music_volume_down
+		@current_music_volume -= VOLUME_INCREMENTATION
+		@current_music.volume = @current_music_volume
+	end
+	
+	def sound_volume_up
+		@current_sound_volume += VOLUME_INCREMENTATION
+		@current_sound.volume = @current_sound_volume
+	end
+	
+	def sound_volume_down
+		@current_sound_volume -= VOLUME_INCREMENTATION
+		@current_sound.volume = @current_sound_volume
+	end
+	
+	def save
+		File.open("./Music/sound_levels.yaml", "w") do |f|
+			f.puts YAML::dump(@volumes)
+		end
+	end
+	
+	def load
+		File.open("./Music/sound_levels.yaml", "r").each do |object|
+			@volumes << YAML::load(object)
+		end
 	end
 end
