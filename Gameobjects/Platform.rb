@@ -28,8 +28,8 @@ class Platform < StaticObject
 		
 		@window.draw_quad	x, y, color,
 							x + TILE_WIDTH, y, color,
-							x + TILE_WIDTH, y - TILE_HEIGHT, color,
-							x, y - TILE_HEIGHT, color
+							x + TILE_WIDTH, y + TILE_HEIGHT, color,
+							x, y + TILE_HEIGHT, color
 	end
 end
 

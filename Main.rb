@@ -85,9 +85,9 @@ class GameWindow < Gosu::Window
 	
 	def draw
 		# Draw gamestate
-		self.translate self.width/2, -100 do
+		self.translate self.width/2, -300 do
 			self.scale @zoom, @zoom, 0,self.height do
-				self.translate -@player.body.p.x.to_px, 0 do
+				self.translate -@player.body.p.x.to_px, @player.body.p.y.to_px do
 					@level.draw
 					
 					@player.draw

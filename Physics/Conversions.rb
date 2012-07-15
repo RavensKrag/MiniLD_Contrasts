@@ -1,7 +1,7 @@
 class Numeric
 	def to_px
 		# Convert from meters to pixels
-		(self*Physics::SCALE).to_i
+		(self*Physics::SCALE).floor
 	end
 	
 	def to_meters

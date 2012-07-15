@@ -71,8 +71,8 @@ class LevelState
 	end
 	
 	def add_player(player)
-		player.body.p.x = @spawn[0]*256.to_meters
-		player.body.p.y = @spawn[1]*256.to_meters
+		player.body.p.x = ((@spawn[0]+1)*256).to_meters
+		player.body.p.y = ((@spawn[1]+1)*256).to_meters
 	end
 	
 	def add_objects_to(space)
