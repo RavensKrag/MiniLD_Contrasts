@@ -61,7 +61,7 @@ class LevelState
 					# Examine pixels around black pixels
 					check = 0
 					
-					puts "#{x}, #{y}"
+					#~ puts "#{x}, #{y}"
 					
 					if y > 0 && level.get_pixel(x,y-1) == black
 						# Top
@@ -83,7 +83,7 @@ class LevelState
 						check += 8
 					end
 					
-					puts check
+					#~ puts check
 					
 					surfaces = [
 						Surface1, Surface2, Surface3, Surface4, 
@@ -95,7 +95,7 @@ class LevelState
 					@static_objects << surfaces[check].new(@window, x, level.height-y)
 				else
 					if val == red
-						puts "red"
+						#~ puts "red"
 						@spawn = [x, level.height-y]
 					end
 				end

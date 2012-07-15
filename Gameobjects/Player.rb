@@ -1,10 +1,13 @@
 class Player < Entity
 	def initialize(window)
-		@img = Gosu::Image.new window, "./Sprites/Character-Idle-Prototype.png", false
+		@animations = Gosu::Image.load_tiles	window, "./Sprites/Animation Roughs/Sheet.png", 
+												-6, -6, false
+		
+		#~ @img = Gosu::Image.new window, "./Sprites/Character-Idle-Prototype.png", false
 		
 		mass = 54
 		move_constant = 500
-		super(window, (@img.width/2).to_meters, @img.height.to_meters, mass, move_constant)
+		super(window, (@animations[0].width/2).to_meters, @animations[0].height.to_meters, mass, move_constant)
 		
 		@body.p = CP::Vec2.new(1,1)
 		
@@ -14,8 +17,7 @@ class Player < Entity
 		
 		# TODO: Update player hitbox
 		
-		@animations = Gosu::Image.load_tiles	window, "./Sprites/Animation Roughs/Sheet.png", 
-												-6, -6, false
+		
 	end
 	
 	def update

@@ -175,7 +175,7 @@ class Jukebox
 	def load
 		if File.exist?(VOLUME_LEVELS_FILE)
 			@volumes = YAML::load(File.open(VOLUME_LEVELS_FILE, "r"))
-			p @volumes
+			#~ p @volumes
 		end
 	end
 end
