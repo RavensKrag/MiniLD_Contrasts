@@ -25,6 +25,24 @@ class GameInput < InputHandler
 		new_action :jump, :rising_edge do
 			@player.jump
 		end
+		
+		
+		
+		new_action :next_sound, :rising_edge do
+			@jukebox.next_sound
+		end
+		
+		new_action :next_music, :rising_edge do
+			@jukebox.next_music
+		end
+		
+		new_action :play_sound, :rising_edge do
+			@jukebox.play_sound
+		end
+		
+		new_action :play_music, :rising_edge do
+			@jukebox.play_music
+		end
 	end
 	
 	def bind_gameplay_inputs
@@ -34,6 +52,14 @@ class GameInput < InputHandler
 		bind_action :move_right, Gosu::KbRight
 		
 		bind_action :jump, Gosu::KbSpace
+		
+		
+		bind_action :next_sound, Gosu::KbN
+		bind_action :next_music, Gosu::KbM
+		
+		bind_action :play_sound, Gosu::KbInsert
+		bind_action :play_music, Gosu::KbDelete
+		
 		
 		#~ @window.char_to_button_id("f")
 	end
