@@ -5,6 +5,7 @@ class Jukebox
 	attr_accessor :music_index, :sound_index
 	
 	VOLUME_INCREMENTATION = 0.01
+	VOLUME_LEVELS_FILE = "./Music/sound_levels.yaml"
 	
 	def initialize(window)
 		@window = window
@@ -56,7 +57,9 @@ class Jukebox
 		
 		#~ @music[1].play 1, 1, true
 		# volume (0-1), speed, loop
-		# @music play_pan(pan = 0, vol = 1, speed = 1, looping = false) 
+		# @music play_pan(pan = 0, vol = 1, speed = 1, looping = false)
+		
+		self.load # load volume settings
 	end
 	
 	def next_music
@@ -118,14 +121,16 @@ class Jukebox
 	end
 	
 	def save
-		File.open("./Music/sound_levels.yaml", "w") do |f|
+		File.open(VOLUME_LEVELS_FILE, "w") do |f|
 			f.puts YAML::dump(@volumes)
 		end
 	end
 	
 	def load
-		File.open("./Music/sound_levels.yaml", "r").each do |object|
-			@volumes << YAML::load(object)
+		if File.exist?(VOLUME_LEVELS_FILE)
+			File.open(VOLUME_LEVELS_FILE, "r").each do |object|
+				@volumes << YAML::load(object)
+			end
 		end
 	end
 end
