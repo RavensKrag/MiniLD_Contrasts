@@ -6,7 +6,9 @@ class PlayerAnimation < Animation
 		super(window, gameobject, "./Sprites/Animation Roughs/Sheet.png")
 		
 		@actions = {
-			:idle => [@frames[20]],
+			:idle => [
+				@frames[20]
+			],
 			:attack => {
 				:diagonal_down => [
 					@frames[0], @frames[1]
@@ -47,7 +49,9 @@ class PlayerAnimation < Animation
 		set_frame_timings
 		
 		@state = :idle
-		@current_frame = @actions[@state][0].image
+		@i = 0
+		@current_frame = @actions[@state][@i].image
+		@time = Gosu.milliseconds
 	end
 	
 	def update
@@ -55,6 +59,7 @@ class PlayerAnimation < Animation
 		
 		case @state
 			when :idle
+				@i = 0
 				if @gameobject.body.v.y > move_threshold
 					@state = :jump
 				elsif @gameobject.body.v.x > move_threshold && @gameobject.body.v.x < -move_threshold
@@ -63,13 +68,35 @@ class PlayerAnimation < Animation
 			when :run
 				
 			when :jump
-				
+				if @gameobject.body.v.y.abs < 3
+					@i = 1
+				else
+					if @gameobject.body.v.y > 0
+						@i = 0
+					else
+						@i = 2
+					end
+				end
 		end
 		
-		@current_frame = @actions[@state][0].image
+		
+		@current_frame = @actions[@state][@i].image
+	end
+	
+	def transition_to(state)
+		@state = state
+		timestamp
 	end
 	
 	private
+	
+	def timestamp
+		@time = Gosu.milliseconds
+	end
+	
+	def dt
+		return Gosu.milliseconds - @time
+	end
 	
 	def set_frame_timings
 		@actions[:attack][:diagonal_down][0].time = 0

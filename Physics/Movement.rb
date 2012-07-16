@@ -45,7 +45,7 @@ module Physics
 		def reset_jump
 			@airborne = false
 			@jump_count = 0
-			@animation.state = :idle
+			@animation.transition_to :idle
 		end
 	end
 end
