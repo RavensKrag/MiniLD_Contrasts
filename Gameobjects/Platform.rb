@@ -39,11 +39,18 @@ end
 
 class Surface1 < Platform
 	def initialize(window, x,y)
+		#~ verts = [
+			#~ CP::Vec2.new(0, 0),
+			#~ CP::Vec2.new(0, TILE_HEIGHT.to_meters),
+			#~ CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
+			#~ CP::Vec2.new(TILE_WIDTH.to_meters, 0)
+		#~ ]
+		
 		verts = [
-			CP::Vec2.new(0, 0),
-			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, 0)
+			CP::Vec2.new(35.to_meters, TILE_HEIGHT.to_meters-52.to_meters),
+			CP::Vec2.new(181.to_meters, TILE_HEIGHT.to_meters-47.to_meters),
+			CP::Vec2.new(211.to_meters, TILE_HEIGHT.to_meters-173.to_meters),
+			CP::Vec2.new(78.to_meters, TILE_HEIGHT.to_meters-231.to_meters)
 		]
 		
 		
@@ -54,10 +61,11 @@ end
 class Surface2 < Platform
 	def initialize(window, x,y)
 		verts = [
-			CP::Vec2.new(0, 0),
 			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
 			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, 0)
+			CP::Vec2.new(214.to_meters, 126.to_meters),
+			CP::Vec2.new(134.to_meters, 25.to_meters),
+			CP::Vec2.new(68.to_meters, 54.to_meters),
 		]
 		
 		
@@ -68,10 +76,10 @@ end
 class Surface3 < Platform
 	def initialize(window, x,y)
 		verts = [
-			CP::Vec2.new(0, 0),
-			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, 0)
+			CP::Vec2.new(TILE_WIDTH.to_meters, 0),
+			CP::Vec2.new(66.to_meters, 60.to_meters),
+			CP::Vec2.new(63.to_meters, 128.to_meters),
+			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters)
 		]
 		
 		
@@ -96,8 +104,8 @@ class Surface5 < Platform
 	def initialize(window, x,y)
 		verts = [
 			CP::Vec2.new(0, 0),
-			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
+			CP::Vec2.new(91.to_meters, 137.to_meters),
+			CP::Vec2.new(172.to_meters, 160.to_meters),
 			CP::Vec2.new(TILE_WIDTH.to_meters, 0)
 		]
 		
@@ -149,10 +157,9 @@ end
 class Surface9 < Platform
 	def initialize(window, x,y)
 		verts = [
-			CP::Vec2.new(0, 0),
 			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
-			CP::Vec2.new(TILE_WIDTH.to_meters, 0)
+			CP::Vec2.new(228.to_meters, 127.to_meters),
+			CP::Vec2.new(0, 0)
 		]
 		
 		
@@ -163,11 +170,10 @@ end
 class Surface10 < Platform
 	def initialize(window, x,y)
 		verts = [
-			
 			CP::Vec2.new(0, 0),
 			CP::Vec2.new(0, TILE_HEIGHT.to_meters),
 			CP::Vec2.new(TILE_WIDTH.to_meters, TILE_HEIGHT.to_meters),
-			
+			CP::Vec2.new(197.to_meters, 124.to_meters)
 		]
 		
 		
