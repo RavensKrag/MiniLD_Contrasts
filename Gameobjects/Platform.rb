@@ -8,7 +8,7 @@ class Platform < StaticObject
 		shape = CP::Shape::Poly.new CP::Body.new_static(), verts, CP::ZERO_VEC_2
 		super(window, shape)
 		
-		@shape.u = 0.2
+		@shape.u = 0.8
 		@body.p.x = x*TILE_WIDTH.to_meters
 		@body.p.y = y*TILE_HEIGHT.to_meters
 		
