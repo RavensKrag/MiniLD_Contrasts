@@ -96,7 +96,20 @@ class PlayerAnimation < Animation
 				end
 			when :jump_to_idle
 				#~ Should be able to cancel into any other animation state
+				# TODO: Make less BAD
+				# Cancel out
 				
+				if @gameobject.body.v.y > move_threshold
+					@state = :jump
+					@i = 0
+				end
+				
+				if @gameobject.body.v.x > move_threshold || @gameobject.body.v.x < -move_threshold
+					@state = :run
+					@i = 0
+				end
+				
+				# For this state
 				if dt > frame_time
 					@state = :idle
 				end
