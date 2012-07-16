@@ -52,6 +52,7 @@ class DebugOutput
 		format = "%.3f"
 		
 		debug_print "Player", [
+			"state: #{@window.player.animation.state}",
 			"px, py : #{format % @window.player.body.p.x}, #{format % @window.player.body.p.y}",
 			"vx, vy : #{format % @window.player.body.v.x}, #{format % @window.player.body.v.y}",
 			"fx, fy : #{format % @window.player.body.f.x}, #{format % @window.player.body.f.y}"

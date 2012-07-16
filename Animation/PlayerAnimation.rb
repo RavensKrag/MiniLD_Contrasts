@@ -65,11 +65,25 @@ class PlayerAnimation < Animation
 				@i = 0
 				if @gameobject.body.v.y > move_threshold
 					@state = :jump
-				elsif @gameobject.body.v.x > move_threshold && @gameobject.body.v.x < -move_threshold
+				end
+				
+				if @gameobject.body.v.x > move_threshold || @gameobject.body.v.x < -move_threshold
 					@state = :run
 				end
 			when :run
+				if @gameobject.body.v.x.abs < move_threshold
+					@state = :idle
+					@i = 0
+					return
+				end
 				
+				if dt > frame_time
+					@i += 1
+					
+					if @i == @actions[:run].length # Loop animation
+						@i = 0
+					end
+				end
 			when :jump
 				if @gameobject.body.v.y.abs < 3
 					@i = 1
@@ -81,6 +95,8 @@ class PlayerAnimation < Animation
 					end
 				end
 			when :jump_to_idle
+				#~ Should be able to cancel into any other animation state
+				
 				if dt > frame_time
 					@state = :idle
 				end
@@ -120,6 +136,15 @@ class PlayerAnimation < Animation
 	def set_frame_timings
 		@actions[:attack][:diagonal_down][0].time = 0
 		@actions[:attack][:diagonal_down][1].time = 0
+		
+		@actions[:run][0].time = 0
+		@actions[:run][1].time = 0
+		@actions[:run][2].time = 0
+		@actions[:run][3].time = 0
+		@actions[:run][4].time = 0
+		@actions[:run][5].time = 0
+		@actions[:run][6].time = 0
+		@actions[:run][7].time = 0
 		
 		@actions[:jump_to_idle][0].time = 2000
 	end
