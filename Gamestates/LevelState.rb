@@ -93,22 +93,22 @@ class LevelState
 					
 					if y > 0 && level.get_pixel(x,y-1) == black
 						# Top
-						check += 1
+						check |= 0x1
 					end
 					
 					if x < level.width-1 && level.get_pixel(x+1,y) == black
 						# Right
-						check += 2
+						check |= 0x2
 					end
 					
 					if y < level.height-1 && level.get_pixel(x,y+1) == black
 						# Bottom
-						check += 4
+						check |= 0x4
 					end
 					
 					if x > 0 && level.get_pixel(x-1,y) == black
 						# Left
-						check += 8
+						check |= 0x8
 					end
 					
 					#~ puts check
