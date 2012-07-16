@@ -236,7 +236,10 @@ class Surface14 < Platform
 	end
 end
 
+# Should have randomly placed trees appear on top, with a certain probability
 class Surface15 < Platform
+	TREE_CHANCE = 0.2
+	
 	def initialize(window, x,y)
 		verts = [
 			CP::Vec2.new(0, 0),
@@ -247,6 +250,25 @@ class Surface15 < Platform
 		
 		
 		super(window, 14, verts, x,y)
+		
+		@@tree_img ||= Gosu::Image.new(window, "./Sprites/Tree.png", false)
+		
+		if rand < TREE_CHANCE
+			@tree_visible = true
+		end
+		# Position relative to the platform
+		@tree_x = TILE_WIDTH/2-@@tree_img.width/2
+		@tree_y = 0
+	end
+	
+	def draw
+		super()
+		
+		if @tree_visible
+			x = @body.p.x.to_px
+			y = @window.height - @body.p.y.to_px - TILE_HEIGHT
+			@@tree_img.draw(x+@tree_x, y+@tree_y-@@tree_img.height, 1000)
+		end
 	end
 end
 
