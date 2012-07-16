@@ -1,9 +1,11 @@
 class Animation
 	Frame = Struct.new(:image, :time)
 	
-	def initialize(window, gameobject, spritesheet_file)
+	def initialize(window, gameobject, spritesheet_file, x_offset=0, y_offset=0)
 		@window = window
 		@gameobject = gameobject
+		@x_offset = x_offset
+		@y_offset = y_offset
 		
 		images = Gosu::Image.load_tiles window, spritesheet_file,	-6, -6, false
 		
@@ -20,10 +22,14 @@ class Animation
 	end
 	
 	def draw(*args)
+		args[0] += @x_offset if args[0]
+		args[1] += @y_offset if args[1]
 		@current_frame.draw *args
 	end
 	
 	def draw_rot(*args)
+		args[0] += @x_offset if args[0]
+		args[1] += @y_offset if args[1]
 		@current_frame.draw_rot *args
 	end
 	

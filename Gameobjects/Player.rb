@@ -2,20 +2,24 @@ class Player < Entity
 	attr_reader :animation
 	
 	def initialize(window)
-		@animation = PlayerAnimation.new window, self
-		
 		@scale = 1
 		mass = 54
 		ground_move_constant = 2700
 		air_move_constant = 300
-		super(window, (@animation.width/2).to_meters*@scale, @animation.height.to_meters*@scale, 
+		
+		x_offset = 0
+		y_offset = -52
+		
+		@animation = PlayerAnimation.new window, self, x_offset, y_offset
+		
+		super(window, (@animation.width/2).to_meters*@scale, 3.5*@scale, 
 				mass, ground_move_constant, air_move_constant)
 		
 		@body.p = CP::Vec2.new(1,1)
-		
 		@shape.u = 0.8
 		
 		#~ @body.v_limit = 20
+		
 		
 		# TODO: Update player hitbox
 	end

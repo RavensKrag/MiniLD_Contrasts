@@ -1,9 +1,9 @@
 class PlayerAnimation < Animation
 	attr_accessor :state
 	
-	def initialize(window, gameobject)
+	def initialize(window, gameobject, x_offset=0, y_offset=0)
 		
-		super(window, gameobject, "./Sprites/Animation Roughs/Sheet.png")
+		super(window, gameobject, "./Sprites/Animation Roughs/Sheet.png", x_offset, y_offset)
 		
 		@actions = {
 			:idle => [
@@ -27,26 +27,13 @@ class PlayerAnimation < Animation
 				]
 			},
 			
-			:jump => [
-				@frames[6],
-				@frames[7],
-				@frames[8]
-			],
+			:jump => @frames[6..8],
 			
 			:jump_to_idle => [
 				@frames[9]
 			],
 			
-			:run => [
-				@frames[10],
-				@frames[11],
-				@frames[12],
-				@frames[13],
-				@frames[14],
-				@frames[15],
-				@frames[16],
-				@frames[17]
-			],
+			:run => @frames[10..17],
 		}
 		
 		set_frame_timings
@@ -77,7 +64,8 @@ class PlayerAnimation < Animation
 					@state = :idle
 					@i = 0
 					return
-				elsif @gameobject.body.v.y.abs > move_threshold
+				end
+				if @gameobject.body.v.y.abs > move_threshold
 					@state = :jump
 					@i = 0
 					return
