@@ -63,16 +63,22 @@ class PlayerAnimation < Animation
 		case @state
 			when :idle
 				@i = 0
+				if @gameobject.body.v.x > move_threshold || @gameobject.body.v.x < -move_threshold
+					@state = :run
+				end
+				
 				if @gameobject.body.v.y > move_threshold
 					@state = :jump
 				end
 				
-				if @gameobject.body.v.x > move_threshold || @gameobject.body.v.x < -move_threshold
-					@state = :run
-				end
+				
 			when :run
 				if @gameobject.body.v.x.abs < move_threshold
 					@state = :idle
+					@i = 0
+					return
+				elsif @gameobject.body.v.y.abs > move_threshold
+					@state = :jump
 					@i = 0
 					return
 				end
