@@ -63,8 +63,9 @@ class GameWindow < Gosu::Window
 		
 		@inpman = GameInput.new @player, @jukebox
 		
-		target_sprite_height = 90.0
-		@default_zoom = target_sprite_height/Physics::CHARACTER_HEIGHT_PX
+		#~ target_sprite_height = 90.0
+		#~ @default_zoom = target_sprite_height/Physics::CHARACTER_HEIGHT_PX
+		@default_zoom = 0.381
 		@zoom = @default_zoom
 	end
 	
