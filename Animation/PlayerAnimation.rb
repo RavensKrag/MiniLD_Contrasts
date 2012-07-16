@@ -30,7 +30,10 @@ class PlayerAnimation < Animation
 			:jump => [
 				@frames[6],
 				@frames[7],
-				@frames[8],
+				@frames[8]
+			],
+			
+			:jump_to_idle => [
 				@frames[9]
 			],
 			
@@ -77,15 +80,27 @@ class PlayerAnimation < Animation
 						@i = 2
 					end
 				end
+			when :jump_to_idle
+				if dt > frame_time
+					@state = :idle
+				end
 		end
 		
 		
 		@current_frame = @actions[@state][@i].image
 	end
 	
-	def transition_to(state)
-		@state = state
-		timestamp
+	def transition_to(next_state)
+		case next_state
+			when :idle
+				if @state == :jump
+					@state = :jump_to_idle
+					@i = 0
+					timestamp
+				end
+			else
+				@state = next_state
+		end
 	end
 	
 	private
@@ -98,8 +113,14 @@ class PlayerAnimation < Animation
 		return Gosu.milliseconds - @time
 	end
 	
+	def frame_time
+		@actions[@state][@i].time
+	end
+	
 	def set_frame_timings
 		@actions[:attack][:diagonal_down][0].time = 0
 		@actions[:attack][:diagonal_down][1].time = 0
+		
+		@actions[:jump_to_idle][0].time = 2000
 	end
 end
