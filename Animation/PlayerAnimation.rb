@@ -42,7 +42,7 @@ class PlayerAnimation < Animation
 			],
 		}
 		
-		@current_frame = @actions[:idle][0]
+		@current_frame = @actions[:idle][0].image
 	end
 	
 	def update
