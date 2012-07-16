@@ -1,0 +1,12 @@
+
+Assuming RGB:
+
+#FFFFFF - Empty
+#000000 - Solid tile
+#FF0000 - Player spawn
+
+All pixels with EE in the red channel are enemy spawns
+
+#EEFF00 - Guntank
+#EE00FF - Turret
+#EEAAAA - Turretman
