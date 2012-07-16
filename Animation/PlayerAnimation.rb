@@ -1,7 +1,7 @@
 class PlayerAnimation < Animation
-	def initialize(window)
+	def initialize(window, gameobject)
 		
-		super(window, "./Sprites/Animation Roughs/Sheet.png")
+		super(window, gameobject, "./Sprites/Animation Roughs/Sheet.png")
 		
 		@actions = {
 			:idle => [@frames[20]],
@@ -10,10 +10,10 @@ class PlayerAnimation < Animation
 					@frames[0], @frames[1]
 				],
 				:diagonal_up => [
-					@frames[0], @frames[1]
+					@frames[2], @frames[3]
 				],
 				:horizontal => [
-					@frames[0], @frames[1]
+					@frames[4], @frames[5]
 				],
 				:vertical_down => [
 					@frames[18], @frames[19]
@@ -44,11 +44,18 @@ class PlayerAnimation < Animation
 		
 		set_frame_timings
 		
-		@current_frame = @actions[:idle][0].image
+		@gameobject.state = :idle
+		@current_frame = @actions[@gameobject.state][0].image
 	end
 	
 	def update
 		
+		
+		#~ case @current_state
+			#~ 
+		#~ end
+		
+		@current_frame = @actions[@gameobject.state][0].image
 	end
 	
 	private

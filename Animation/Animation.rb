@@ -1,8 +1,10 @@
 class Animation
 	Frame = Struct.new(:image, :time)
 	
-	def initialize(window, spritesheet_file)
+	def initialize(window, gameobject, spritesheet_file)
 		@window = window
+		@gameobject = gameobject
+		
 		images = Gosu::Image.load_tiles window, spritesheet_file,	-6, -6, false
 		
 		@frames = []
