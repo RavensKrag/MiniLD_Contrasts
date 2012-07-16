@@ -8,11 +8,11 @@ class LevelState
 		@mountains1 = Gosu::Image.new(@window, "./Sprites/Background/Mountains-1.png", false)
 		@mountains2 = Gosu::Image.new(@window, "./Sprites/Background/Mountains-2.png", false)
 		
-		@mountain_1_scale_x = 0.1
-		@mountain_1_scale_y = 0.1
+		@mountain_1_scale_x = 0.01
+		@mountain_1_scale_y = 0.00225
 		
-		@mountain_2_scale_x = 0.1
-		@mountain_2_scale_y = 0.1
+		@mountain_2_scale_x = 0.015
+		@mountain_2_scale_y = 0.0025
 	end
 	
 	def update
