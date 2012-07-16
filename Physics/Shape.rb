@@ -1,6 +1,8 @@
 module Physics
 	module Shape
 		class Circle < CP::Shape::Circle
+			attr_accessor :width, :height
+			
 			def initialize(gameobject, *args)
 				super(*args)
 				self.object = gameobject
@@ -12,6 +14,8 @@ module Physics
 		end
 		
 		class Poly < CP::Shape::Poly
+			attr_accessor :width, :height
+			
 			def initialize(gameobject, *args)
 				super(*args)
 				self.object = gameobject
