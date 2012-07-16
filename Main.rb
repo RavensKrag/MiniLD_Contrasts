@@ -14,6 +14,7 @@ require 'require_all'
 require_all './Physics'
 require_all './Gameobjects'
 require_all './Utilities'
+require_all './Animation'
 require_all './Gamestates'
 require_all './Debug'
 

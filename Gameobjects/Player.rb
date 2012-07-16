@@ -1,12 +1,11 @@
 class Player < Entity
 	def initialize(window)
-		@animations = Gosu::Image.load_tiles	window, "./Sprites/Animation Roughs/Sheet.png", 
-												-6, -6, false
+		@animation = PlayerAnimation.new window
 		
 		@scale = 1
 		mass = 54
 		move_constant = 500
-		super(window, (@animations[0].width/2).to_meters*@scale, @animations[0].height.to_meters*@scale, 
+		super(window, (@animation.width/2).to_meters*@scale, @animation.height.to_meters*@scale, 
 				mass, move_constant)
 		
 		@body.p = CP::Vec2.new(1,1)
@@ -34,7 +33,7 @@ class Player < Entity
 					1
 				end
 		
-		@animations[20].draw_rot	x,	y, 100, 0, 0.5,0,	dir*@scale,@scale
+		@animation.draw_rot	x,	y, 100, 0, 0.5,0,	dir*@scale,@scale
 		#~ @img.draw_rot	x,	y, 100, 0, 0.5,0,	dir,1
 		#~ @img.draw_rot	x-@img.width,	y, 100, 0,0.5,0.5,	1,1
 		
