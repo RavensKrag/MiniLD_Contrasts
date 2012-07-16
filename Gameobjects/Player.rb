@@ -21,6 +21,7 @@ class Player < Entity
 	
 	def update
 		super()
+		@animation.update
 	end
 	
 	def draw

@@ -3,6 +3,8 @@ class Animation
 		@window = window
 		@frames = Gosu::Image.load_tiles window, spritesheet_file,	-6, -6, false
 		
+		
+		
 		@current_frame = @frames[20]
 	end
 	
