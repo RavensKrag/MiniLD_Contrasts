@@ -1,6 +1,8 @@
 class Player < Entity
+	attr_accessor :state 
+	
 	def initialize(window)
-		@animation = PlayerAnimation.new window
+		@animation = PlayerAnimation.new window, self
 		
 		@scale = 1
 		mass = 54
@@ -17,6 +19,8 @@ class Player < Entity
 		# TODO: Update player hitbox
 		
 		
+		# Current action state
+		@state = :idle
 	end
 	
 	def update
