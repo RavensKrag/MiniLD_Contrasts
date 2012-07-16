@@ -41,6 +41,8 @@ class LevelState
 		@mountains2.draw	-@mountains2.width+x*@mountain_2_scale_x,
 							@window.height-@mountains2.height+y*@mountain_2_scale_y+@mountain_2_offset_y, 0
 		
+		@window.flush
+		
 		@window.translate @window.width/2, -300 do
 			@window.scale @window.zoom, @window.zoom, 0,@window.height do
 				@window.translate -@player.body.p.x.to_px, @player.body.p.y.to_px do

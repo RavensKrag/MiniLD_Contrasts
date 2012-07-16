@@ -258,7 +258,7 @@ class Surface15 < Platform
 		end
 		# Position relative to the platform
 		@tree_x = TILE_WIDTH/2-@@tree_img.width/2
-		@tree_y = 0
+		@tree_y = 35
 	end
 	
 	def draw
@@ -267,7 +267,7 @@ class Surface15 < Platform
 		if @tree_visible
 			x = @body.p.x.to_px
 			y = @window.height - @body.p.y.to_px - TILE_HEIGHT
-			@@tree_img.draw(x+@tree_x, y+@tree_y-@@tree_img.height, 1000)
+			@@tree_img.draw(x+@tree_x, y+@tree_y-@@tree_img.height, -5)
 		end
 	end
 end
