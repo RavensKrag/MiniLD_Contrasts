@@ -42,10 +42,19 @@ class PlayerAnimation < Animation
 			],
 		}
 		
+		set_frame_timings
+		
 		@current_frame = @actions[:idle][0].image
 	end
 	
 	def update
 		
+	end
+	
+	private
+	
+	def set_frame_timings
+		@actions[:attack][:diagonal_down][0].time = 0
+		@actions[:attack][:diagonal_down][1].time = 0
 	end
 end
