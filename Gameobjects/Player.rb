@@ -30,9 +30,9 @@ class Player < Entity
 		y = @window.height - @body.p.y.to_px - @shape.height.to_px
 		
 		dir =	if @body.v.x > 0
-					-1
-				else
 					1
+				else
+					-1
 				end
 		
 		@animation.draw_rot	x,	y, 100, 0, 0.5,0,	dir*@scale,@scale
