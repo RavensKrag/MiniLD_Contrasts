@@ -79,6 +79,7 @@ class PlayerAnimation < Animation
 				
 				if dt > frame_time
 					@i += 1
+					timestamp
 					
 					if @i == @actions[:run].length # Loop animation
 						@i = 0
@@ -150,15 +151,15 @@ class PlayerAnimation < Animation
 		@actions[:attack][:diagonal_down][0].time = 0
 		@actions[:attack][:diagonal_down][1].time = 0
 		
-		@actions[:run][0].time = 0
-		@actions[:run][1].time = 0
-		@actions[:run][2].time = 0
-		@actions[:run][3].time = 0
-		@actions[:run][4].time = 0
-		@actions[:run][5].time = 0
-		@actions[:run][6].time = 0
-		@actions[:run][7].time = 0
+		@actions[:run][0].time = 70
+		@actions[:run][1].time = 70
+		@actions[:run][2].time = 70
+		@actions[:run][3].time = 70
+		@actions[:run][4].time = 70
+		@actions[:run][5].time = 70
+		@actions[:run][6].time = 70
+		@actions[:run][7].time = 70
 		
-		@actions[:jump_to_idle][0].time = 2000
+		@actions[:jump_to_idle][0].time = 350
 	end
 end
