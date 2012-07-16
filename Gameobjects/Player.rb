@@ -6,9 +6,10 @@ class Player < Entity
 		
 		@scale = 1
 		mass = 54
-		move_constant = 500
+		ground_move_constant = 500
+		air_move_constant = 500
 		super(window, (@animation.width/2).to_meters*@scale, @animation.height.to_meters*@scale, 
-				mass, move_constant)
+				mass, ground_move_constant, air_move_constant)
 		
 		@body.p = CP::Vec2.new(1,1)
 		
