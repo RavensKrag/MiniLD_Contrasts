@@ -3,7 +3,16 @@ class LevelState
 		@window = window
 		load_static_objects(file)
 		
-		@backdrop = Gosu::Image.new(@window, "./Sprites/Backdrop.png", false)
+		@backdrop = Gosu::Image.new(@window, "./Sprites/Background/Backdrop.png", false)
+		
+		@mountains1 = Gosu::Image.new(@window, "./Sprites/Background/Mountains-1.png", false)
+		@mountains2 = Gosu::Image.new(@window, "./Sprites/Background/Mountains-2.png", false)
+		
+		@mountain_1_scale_x = 0.1
+		@mountain_1_scale_y = 0.1
+		
+		@mountain_2_scale_x = 0.1
+		@mountain_2_scale_y = 0.1
 	end
 	
 	def update
@@ -12,6 +21,23 @@ class LevelState
 	
 	def draw
 		@backdrop.draw 0,0,0
+		
+		x = -@window.player.body.p.x.to_px
+		y = -@window.player.body.p.y.to_px
+		
+		@mountains1.draw	0+x*@mountain_1_scale_x, 
+							@window.height-@mountains1.height+y*@mountain_1_scale_y, 0
+		@mountains1.draw	@mountains1.width+x*@mountain_1_scale_x, 
+							@window.height-@mountains1.height+y*@mountain_1_scale_y, 0
+		@mountains1.draw	-@mountains1.width+x*@mountain_1_scale_x,
+							@window.height-@mountains1.height+y*@mountain_1_scale_y, 0
+		
+		@mountains2.draw	0+x*@mountain_2_scale_x, 
+							@window.height-@mountains2.height+y*@mountain_2_scale_y, 0
+		@mountains2.draw	@mountains2.width+x*@mountain_2_scale_x, 
+							@window.height-@mountains2.height+y*@mountain_2_scale_y, 0
+		@mountains2.draw	-@mountains2.width+x*@mountain_2_scale_x,
+							@window.height-@mountains2.height+y*@mountain_2_scale_y, 0
 		
 		@window.translate @window.width/2, -300 do
 			@window.scale @window.zoom, @window.zoom, 0,@window.height do
