@@ -1,4 +1,6 @@
 class PlayerAnimation < Animation
+	attr_accessor :state
+	
 	def initialize(window, gameobject)
 		
 		super(window, gameobject, "./Sprites/Animation Roughs/Sheet.png")
@@ -44,18 +46,27 @@ class PlayerAnimation < Animation
 		
 		set_frame_timings
 		
-		@gameobject.state = :idle
-		@current_frame = @actions[@gameobject.state][0].image
+		@state = :idle
+		@current_frame = @actions[@state][0].image
 	end
 	
 	def update
+		move_threshold = 0.01
 		
+		case @state
+			when :idle
+				if @gameobject.body.v.y > move_threshold
+					@state = :jump
+				elsif @gameobject.body.v.x > move_threshold && @gameobject.body.v.x < -move_threshold
+					@state = :run
+				end
+			when :run
+				
+			when :jump
+				
+		end
 		
-		#~ case @current_state
-			#~ 
-		#~ end
-		
-		@current_frame = @actions[@gameobject.state][0].image
+		@current_frame = @actions[@state][0].image
 	end
 	
 	private

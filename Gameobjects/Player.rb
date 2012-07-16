@@ -1,27 +1,23 @@
 class Player < Entity
-	attr_accessor :state 
+	attr_reader :animation
 	
 	def initialize(window)
 		@animation = PlayerAnimation.new window, self
 		
 		@scale = 1
 		mass = 54
-		ground_move_constant = 500
-		air_move_constant = 500
+		ground_move_constant = 2700
+		air_move_constant = 300
 		super(window, (@animation.width/2).to_meters*@scale, @animation.height.to_meters*@scale, 
 				mass, ground_move_constant, air_move_constant)
 		
 		@body.p = CP::Vec2.new(1,1)
 		
-		@shape.u = 0.2
+		@shape.u = 0.8
 		
 		#~ @body.v_limit = 20
 		
 		# TODO: Update player hitbox
-		
-		
-		# Current action state
-		@state = :idle
 	end
 	
 	def update
