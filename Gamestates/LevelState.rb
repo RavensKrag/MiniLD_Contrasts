@@ -10,9 +10,11 @@ class LevelState
 		
 		@mountain_1_scale_x = 0.01
 		@mountain_1_scale_y = 0.00225
+		@mountain_1_offset_y = 0
 		
 		@mountain_2_scale_x = 0.015
 		@mountain_2_scale_y = 0.0025
+		@mountain_2_offset_y = 0
 	end
 	
 	def update
@@ -26,18 +28,18 @@ class LevelState
 		y = -@window.player.body.p.y.to_px
 		
 		@mountains1.draw	0+x*@mountain_1_scale_x, 
-							@window.height-@mountains1.height+y*@mountain_1_scale_y, 0
+							@window.height-@mountains1.height+y*@mountain_1_scale_y+@mountain_1_offset_y, 0
 		@mountains1.draw	@mountains1.width+x*@mountain_1_scale_x, 
-							@window.height-@mountains1.height+y*@mountain_1_scale_y, 0
+							@window.height-@mountains1.height+y*@mountain_1_scale_y+@mountain_1_offset_y, 0
 		@mountains1.draw	-@mountains1.width+x*@mountain_1_scale_x,
-							@window.height-@mountains1.height+y*@mountain_1_scale_y, 0
+							@window.height-@mountains1.height+y*@mountain_1_scale_y+@mountain_1_offset_y, 0
 		
 		@mountains2.draw	0+x*@mountain_2_scale_x, 
-							@window.height-@mountains2.height+y*@mountain_2_scale_y, 0
+							@window.height-@mountains2.height+y*@mountain_2_scale_y+@mountain_2_offset_y, 0
 		@mountains2.draw	@mountains2.width+x*@mountain_2_scale_x, 
-							@window.height-@mountains2.height+y*@mountain_2_scale_y, 0
+							@window.height-@mountains2.height+y*@mountain_2_scale_y+@mountain_2_offset_y, 0
 		@mountains2.draw	-@mountains2.width+x*@mountain_2_scale_x,
-							@window.height-@mountains2.height+y*@mountain_2_scale_y, 0
+							@window.height-@mountains2.height+y*@mountain_2_scale_y+@mountain_2_offset_y, 0
 		
 		@window.translate @window.width/2, -300 do
 			@window.scale @window.zoom, @window.zoom, 0,@window.height do
